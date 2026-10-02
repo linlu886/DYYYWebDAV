@@ -1,0 +1,9 @@
+Package: com.dyyywebdav.tweak
+Name: DYYYWebDAV
+Version: 0.1.0
+Architecture: iphoneos-arm64
+Description: Minimal Douyin parser downloader with automatic WebDAV upload
+Maintainer: DYYYWebDAV
+Author: DYYYWebDAV
+Section: Tweaks
+Depends: firmware (>= 15.0)

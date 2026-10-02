@@ -1,0 +1,1 @@
+This project is an independent implementation that uses the public DYYY project only as a reference for runtime class names and long-press panel integration. Do not redistribute proprietary app binaries or headers.
