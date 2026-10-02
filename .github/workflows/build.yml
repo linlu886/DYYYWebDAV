@@ -1,27 +1,40 @@
 name: Build DYYYWebDAV
+
 on:
   workflow_dispatch:
   push:
-    branches: [main, master]
-    paths-ignore: ['**.md']
+    branches:
+      - main
+      - master
+
 permissions:
   contents: read
+
 jobs:
   build-rootless:
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 30
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Theos
-        uses: theos/setup-theos@v1
+
+      - name: Setup Theos
+        uses: waruhachi/theos-action@v2.6.3
+
       - name: Build rootless package
+        shell: bash
         run: |
-          set -euo pipefail
+          set -e
           make clean
           make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+
       - name: List packages
-        run: find packages -maxdepth 1 -type f -name '*.deb' -print
+        shell: bash
+        run: |
+          set -e
+          find packages -maxdepth 1 -type f -name '*.deb' -print
+
       - name: Upload Debian package
         uses: actions/upload-artifact@v4
         with:
